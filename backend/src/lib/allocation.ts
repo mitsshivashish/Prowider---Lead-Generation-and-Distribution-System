@@ -201,8 +201,8 @@ export const allocateLeadToProviders = async (
       return allocated;
     },
     {
-      maxWait: 20000, // 20 seconds to acquire a connection from the limited pool
-      timeout: 30000, // 30 seconds to execute the transaction
+      maxWait: 50000, // 50 seconds to acquire a connection from the limited pool
+      timeout: 60000, // 60 seconds to execute the transaction
     }
   );
 };
@@ -229,8 +229,8 @@ export const reassignDisputedLeadToProviders = async (
       return newProviderIds;
     },
     {
-      maxWait: 20000,
-      timeout: 30000,
+      maxWait: 50000,
+      timeout: 60000,
     }
   );
 };

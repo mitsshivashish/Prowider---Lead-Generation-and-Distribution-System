@@ -12,7 +12,7 @@ export function getPrisma(): PrismaClient {
     const pool = new Pool({
       connectionString: url,
       max: 3, // Prevent exceeding Render's free tier connection limit
-      connectionTimeoutMillis: 30000, // Wait up to 30s for an available connection
+      connectionTimeoutMillis: 60000, // Wait up to 60s for an available connection
     });
     const adapter = new PrismaPg(pool);
     _prisma = new PrismaClient({ adapter, log: ["error"] });
