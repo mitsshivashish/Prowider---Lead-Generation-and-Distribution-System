@@ -1,0 +1,27 @@
+{
+  "name": "prowider-frontend",
+  "version": "1.0.0",
+  "description": "Prowider Lead Distribution Frontend",
+  "private": true,
+  "scripts": {
+    "dev": "node -e \"require('fs').rmSync('.next', { recursive: true, force: true })\" && next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5.1.3"
+  }
+}
