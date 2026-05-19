@@ -154,6 +154,22 @@ cd frontend && npm run dev
 - **Reset environment**: `cd backend && npm run prisma:reset` (⚠️ destroys all data)
 - **Console logs**: Backend logs go to terminal; Frontend logs go to browser console
 
+### Test Credentials & Access
+
+**1. Admin Portal**
+- **URL:** `/login` (redirects to `/admin`)
+- **Email:** `admin@example.com`
+- **Password:** `admin1234`
+
+**2. Provider Portal**
+- **URL:** `/provider/login` (redirects to `/provider/dashboard`)
+- **Email:** `provider1@prowider.com`
+- **Password:** `provider123`
+
+**3. Customer Portal**
+- **URL:** `/dashboard`
+- **Login Method:** Enter the customer email used during the request submission to view, confirm, or dispute the work.
+
 ---
 
 **Last Updated**: May 2026
