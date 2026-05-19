@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import ProviderGuard from "@/components/ProviderGuard";
 import {
@@ -14,7 +15,8 @@ import {
 import { useProviderAuth } from "@/lib/provider-auth";
 
 function ProviderDashboardContent() {
-  const { provider } = useProviderAuth();
+  const router = useRouter();
+  const { provider, logout } = useProviderAuth();
   const [profile, setProfile] = useState<ProviderProfile | null>(null);
   const [leads, setLeads] = useState<ProviderLead[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,12 +31,17 @@ function ProviderDashboardContent() {
       ]);
       setProfile(profileData);
       setLeads(leadsData.leads);
-    } catch (err) {
+    } catch (err: any) {
+      if (err?.message === "Unauthorized" || err?.message?.includes("401")) {
+        logout();
+        router.replace("/provider/login");
+        return;
+      }
       console.error("Failed to load provider data:", err);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [logout, router]);
 
   useEffect(() => {
     // Fetch initial data
