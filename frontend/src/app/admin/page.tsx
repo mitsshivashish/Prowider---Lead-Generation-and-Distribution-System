@@ -64,6 +64,11 @@ function AdminDashboard() {
   useEffect(() => {
     // Establish a real-time connection for live updates
     const eventSource = new EventSource(apiUrl("/events"), { withCredentials: true });
+    
+    // Background polling as fallback
+    const interval = setInterval(() => {
+      fetchLeads();
+    }, 5000); // Auto-refresh silently every 5 seconds
 
     eventSource.onmessage = (event) => {
       try {
@@ -77,7 +82,10 @@ function AdminDashboard() {
       }
     };
 
-    return () => eventSource.close();
+    return () => {
+      eventSource.close();
+      clearInterval(interval);
+    };
   }, [fetchLeads]);
 
   useEffect(() => {
