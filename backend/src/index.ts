@@ -29,9 +29,12 @@ const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
 // 1.5 Trust the reverse proxy (Render, Railway, AWS, etc.) so rate limiting works correctly
 app.set("trust proxy", 1);
 
+// Safely handle trailing slashes in the environment variable to prevent CORS errors
+const safeFrontendUrl = FRONTEND_URL.endsWith("/") ? FRONTEND_URL.slice(0, -1) : FRONTEND_URL;
+
 // Restrict CORS to frontend URL only
 app.use(cors({
-  origin: FRONTEND_URL,
+  origin: safeFrontendUrl,
   credentials: true
 }));
 
